@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 小積木 | Losepacific]]></title>
+  <link href="http://losepacific.github.io/blog/categories/xiao-ji-mu/atom.xml" rel="self"/>
+  <link href="http://losepacific.github.io/"/>
+  <updated>2015-01-02T21:55:34+08:00</updated>
+  <id>http://losepacific.github.io/</id>
+  <author>
+    <name><![CDATA[Losepacific]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[練習組合小積木]]></title>
+    <link href="http://losepacific.github.io/blog/2015/01/02/lian-xi-zu-he-xiao-ji-mu/"/>
+    <updated>2015-01-02T20:51:17+08:00</updated>
+    <id>http://losepacific.github.io/blog/2015/01/02/lian-xi-zu-he-xiao-ji-mu</id>
+    <content type="html"><![CDATA[<p>小積木。</p>
+]]></content>
+  </entry>
+  
+</feed>
