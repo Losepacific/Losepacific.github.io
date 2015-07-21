@@ -9,7 +9,7 @@
 
 <meta name="author" content="Losepacific"> 
 
-<meta name="description" content="小積木。 小積木 "> <meta name="keywords" content="">
+<meta name="description" content="會想開始這個練習，是因為之前看到了這篇文章：誰說民主不能當飯吃？，文章裡面把網路上《經濟學人》報告提供的表格資料轉換成統計分析圖。這樣的動作大小很接近程式教學文章或參考書目裡會出現的範例；不過，相較於那些範例，部落格裡所做的資料轉換具有生活實質意義許多。因此，打算以這個轉換當成題目， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -56,7 +56,12 @@ $(document).ready(
 );
 </script>
 
-	
+	<!--- MathJax Configuration -->
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<!--- Font-Awesome Configuration -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 
 
@@ -98,7 +103,30 @@ $(document).ready(
 
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">練習組合小積木</h2>
-	<div class="entry-content"><p>小積木。</p>
+	<div class="entry-content"><p>會想開始這個練習，是因為之前看到了這篇文章：<a href="http://skygene.blogspot.tw/2014/05/democracy.html">誰說民主不能當飯吃？</a>，文章裡面把網路上《經濟學人》報告提供的表格資料轉換成統計分析圖。這樣的動作大小很接近程式教學文章或參考書目裡會出現的範例；不過，相較於那些範例，部落格裡所做的資料轉換具有生活實質意義許多。因此，打算以這個轉換當成題目，來練習組合目前在Linux下學到的<a href="http://user.frdm.info/ckhung/a/c013.php#combination">小積木</a>。</p>
+
+<h2>LibreOffice</h2>
+
+<p>LibreOffice這塊積木或許稱不上小，甚至它的規模可說是直比一棟建築物。不過，相較於其它小工具，它合乎一般使用軟體的習慣，如果迴避它，或許會太過刻意。</p>
+
+<h3>資料內容</h3>
+
+<p>這次要處理的第一分資料內容為部落格文章中給出連結的PDF檔：<a href="http://www.economist.com/media/pdf/DEMOCRACY_TABLE_2007_v3.pdf">英國《經濟學人》的2006年的報告</a>。</p>
+
+<p>開啟 <a href="http://www.economist.com/media/pdf/DEMOCRACY_TABLE_2007_v3.pdf"><i class="fa fa-file"></i></a> PDF後，直接選取表格內容之後，再貼到LibreOffice的calc，它會直接跳出對話視窗，其中於<code>分隔選項</code>裡的<code>分隔</code></p>
+
+<p>小積木。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;test&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$</p>
 </div>
 
 

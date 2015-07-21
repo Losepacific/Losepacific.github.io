@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | Losepacific]]></title>
+  <link href="http://losepacific.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://losepacific.github.io/"/>
+  <updated>2015-07-22T01:57:40+08:00</updated>
+  <id>http://losepacific.github.io/</id>
+  <author>
+    <name><![CDATA[Losepacific]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[python3伺服器提供cgi的功能]]></title>
+    <link href="http://losepacific.github.io/blog/2015/07/22/python3si-fu-qi-ti-gong-cgide-gong-neng/"/>
+    <updated>2015-07-22T01:43:10+08:00</updated>
+    <id>http://losepacific.github.io/blog/2015/07/22/python3si-fu-qi-ti-gong-cgide-gong-neng</id>
+    <content type="html"><![CDATA[<p>Python3可以藉由下方指令，把當前的目錄做為網頁伺服器的根目錄，運行網頁服務：</p>
+
+<pre><code class="python">python3 -m http.server  8000 #開啟網路服務於 Port 8000
+</code></pre>
+
+<p>但是上述指令不包括支援CGI的功能，如果需要CGI的功能，必需使用：</p>
+
+<pre><code class="python">python3 -m http.server --cgi 8000 
+</code></pre>
+
+<!-- more -->
+
+
+<p>不過，CGI的檔案不是任何地方都可以放置，基本上需被放置於當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中， 才會被視為CGI，否則，會被當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容。(以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案)</p>
+
+<p>另外，CGI裡，輸出的前兩行文字必需含有如下內容之一：</p>
+
+<pre><code class="perl">print "Content-Type: text/plain \n\n";  #以Perl為例
+</code></pre>
+
+<p>或者：</p>
+
+<pre><code class="perl">print "Content-Type: text/html \n\n";
+</code></pre>
+
+<p>也就是說，輸出的內容比需有Content-Type: text/html外加一個空行。 不然，瀏覽器只會獲得一個空白的內容。</p>
+
+<p>然後，必需把檔案改為可執行檔。</p>
+
+<p>這邊就以一個php檔案作為CGI內容的例子為結尾：</p>
+
+<pre><code class="php">#!/usr/bin/env php
+&lt;?php
+echo "Content-Type: text/html\n\n";
+
+echo "&lt;html&gt;";
+
+echo "&lt;head&gt;";
+echo "&lt;title&gt;CGI TEST&lt;/title&gt;";
+echo "&lt;/head&gt;";
+
+echo "&lt;body&gt;";
+echo "&lt;h1&gt;CGI TEST&lt;/h1&gt;";
+echo "&lt;p&gt;這是一個CGI的網頁測試。火腿。荷包蛋。蕃茄醬。&lt;/p&gt;";
+echo "&lt;/body&gt;";
+
+echo "&lt;/html&gt;";
+?&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

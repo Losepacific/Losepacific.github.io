@@ -4,7 +4,7 @@
   <title><![CDATA[Losepacific]]></title>
   <link href="http://losepacific.github.io/atom.xml" rel="self"/>
   <link href="http://losepacific.github.io/"/>
-  <updated>2015-01-03T02:46:02+08:00</updated>
+  <updated>2015-07-22T01:57:40+08:00</updated>
   <id>http://losepacific.github.io/</id>
   <author>
     <name><![CDATA[Losepacific]]></name>
@@ -14,11 +14,117 @@
 
   
   <entry>
+    <title type="html"><![CDATA[python3伺服器提供cgi的功能]]></title>
+    <link href="http://losepacific.github.io/blog/2015/07/22/python3si-fu-qi-ti-gong-cgide-gong-neng/"/>
+    <updated>2015-07-22T01:43:10+08:00</updated>
+    <id>http://losepacific.github.io/blog/2015/07/22/python3si-fu-qi-ti-gong-cgide-gong-neng</id>
+    <content type="html"><![CDATA[<p>Python3可以藉由下方指令，把當前的目錄做為網頁伺服器的根目錄，運行網頁服務：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span>  <span class="mi">8000</span> <span class="c">#開啟網路服務於 Port 8000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是上述指令不包括支援CGI的功能，如果需要CGI的功能，必需使用：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="o">--</span><span class="n">cgi</span> <span class="mi">8000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>不過，CGI的檔案不是任何地方都可以放置，基本上需被放置於當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中， 才會被視為CGI，否則，會被當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容。(以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案)</p>
+
+<p>另外，CGI裡，輸出的前兩行文字必需含有如下內容之一：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">print</span> <span class="s">&quot;Content-Type: text/plain \n\n&quot;</span><span class="p">;</span>  <span class="c1">#以Perl為例</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或者：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">print</span> <span class="s">&quot;Content-Type: text/html \n\n&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也就是說，輸出的內容比需有Content-Type: text/html外加一個空行。 不然，瀏覽器只會獲得一個空白的內容。</p>
+
+<p>然後，必需把檔案改為可執行檔。</p>
+
+<p>這邊就以一個php檔案作為CGI內容的例子為結尾：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="c1">#!/usr/bin/env php</span>
+</span><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;Content-Type: text/html</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;html&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;head&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;title&gt;CGI TEST&lt;/title&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;/head&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;body&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;h1&gt;CGI TEST&lt;/h1&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;這是一個CGI的網頁測試。火腿。荷包蛋。蕃茄醬。&lt;/p&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;/body&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">echo</span> <span class="s2">&quot;&lt;/html&gt;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[練習組合小積木]]></title>
     <link href="http://losepacific.github.io/blog/2015/01/02/lian-xi-zu-he-xiao-ji-mu/"/>
     <updated>2015-01-02T20:51:17+08:00</updated>
     <id>http://losepacific.github.io/blog/2015/01/02/lian-xi-zu-he-xiao-ji-mu</id>
-    <content type="html"><![CDATA[<p>小積木。</p>
+    <content type="html"><![CDATA[<p>會想開始這個練習，是因為之前看到了這篇文章：<a href="http://skygene.blogspot.tw/2014/05/democracy.html">誰說民主不能當飯吃？</a>，文章裡面把網路上《經濟學人》報告提供的表格資料轉換成統計分析圖。這樣的動作大小很接近程式教學文章或參考書目裡會出現的範例；不過，相較於那些範例，部落格裡所做的資料轉換具有生活實質意義許多。因此，打算以這個轉換當成題目，來練習組合目前在Linux下學到的<a href="http://user.frdm.info/ckhung/a/c013.php#combination">小積木</a>。</p>
+
+<h2>LibreOffice</h2>
+
+<p>LibreOffice這塊積木或許稱不上小，甚至它的規模可說是直比一棟建築物。不過，相較於其它小工具，它合乎一般使用軟體的習慣，如果迴避它，或許會太過刻意。</p>
+
+<h3>資料內容</h3>
+
+<p>這次要處理的第一分資料內容為部落格文章中給出連結的PDF檔：<a href="http://www.economist.com/media/pdf/DEMOCRACY_TABLE_2007_v3.pdf">英國《經濟學人》的2006年的報告</a>。</p>
+
+<p>開啟 <a href="http://www.economist.com/media/pdf/DEMOCRACY_TABLE_2007_v3.pdf"><i class="fa fa-file"></i></a> PDF後，直接選取表格內容之後，再貼到LibreOffice的calc，它會直接跳出對話視窗，其中於<code>分隔選項</code>裡的<code>分隔</code></p>
+
+<p>小積木。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;test&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$</p>
 ]]></content>
   </entry>
   
