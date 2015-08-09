@@ -4,7 +4,7 @@
   <title><![CDATA[Losepacific]]></title>
   <link href="http://losepacific.github.io/atom.xml" rel="self"/>
   <link href="http://losepacific.github.io/"/>
-  <updated>2015-08-10T04:12:54+08:00</updated>
+  <updated>2015-08-10T04:56:59+08:00</updated>
   <id>http://losepacific.github.io/</id>
   <author>
     <name><![CDATA[Losepacific]]></name>
@@ -18,7 +18,7 @@
     <link href="http://losepacific.github.io/blog/2015/07/22/python3si-fu-qi-ti-gong-cgide-gong-neng/"/>
     <updated>2015-07-22T01:43:10+08:00</updated>
     <id>http://losepacific.github.io/blog/2015/07/22/python3si-fu-qi-ti-gong-cgide-gong-neng</id>
-    <content type="html"><![CDATA[<p>Python3可以藉由下方指令，把當前的目錄做為網頁伺服器的根目錄，運行網頁服務：</p>
+    <content type="html"><![CDATA[<p>Python3<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>可以藉由下方指令，把當前的目錄做為網頁伺服器的根目錄，運行網頁服務：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span>  <span class="mi">8000</span> <span class="c">#開啟網路服務於 Port 8000</span>
@@ -35,7 +35,7 @@
 <!-- more -->
 
 
-<p>不過，CGI的檔案不是任何地方都可以放置，基本上Python3的模組，預設需放在當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>， 才會被視為CGI，否則，會當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。</p>
+<p>不過，CGI的檔案不是任何地方都可以放置，基本上Python3的模組，預設需放在當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>， 才會被視為CGI，否則，會當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
 
 <p>檔案目錄的結構示意圖：</p>
 
@@ -56,7 +56,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>也就是說，輸出的內容必需有<code>Content-Type: text/html</code>外加一個空行<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。 不然，瀏覽器只會獲得一個空白的內容。</p>
+<p>也就是說，輸出的內容必需有<code>Content-Type: text/html</code>外加一個空行<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>。 不然，瀏覽器只會獲得一個空白的內容。</p>
 
 <p>然後，必需把檔案改為可執行檔。</p>
 
@@ -104,11 +104,13 @@
 <hr/>
 <ol>
 <li id="fn:1">
-<p>python3的<code>http.server</code>模組預設<code>http.server.CGIHTTPRequestHandler.cgi_directories=[&lsquo;/cgi-bin&rsquo;, &lsquo;/htbin&rsquo;]</code>，如果想要改動放cgi程式的資料夾，就得重新設定這個屬性，比如說改成<code>CGI</code>這個目錄：<code>http.server.CGIHTTPRequestHandler.cgi_directories=[&lsquo;/CGI&rsquo;]</code><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>本來練習網頁一直都是用python當作簡易伺服器，但是直到需要使用php，才發現python不會自動去運行php的內容，雖然這個問題只要改用php自身的簡易伺服器就可以解決了：<code>php -S 127.0.0.1:8000 -t.</code>。但是，總會不服氣，為何php可以，python沒道理不行。<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案。<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>python3的<code>http.server</code>模組預設<code>http.server.CGIHTTPRequestHandler.cgi_directories=[&lsquo;/cgi-bin&rsquo;, &lsquo;/htbin&rsquo;]</code>，如果想要改動放cgi程式的資料夾，就得重新設定這個屬性，比如說改成<code>CGI</code>這個目錄：<code>http.server.CGIHTTPRequestHandler.cgi_directories=[&lsquo;/CGI&rsquo;]</code><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
-<p>當初看python3的範例上寫<code>print(&ldquo;Content-Type: text/html\n&rdquo;)</code>就自作聰明的以為python3預設是會在字串結束的地方加上換行符號，應該不用再多餘的添加<code>\n</code>，結果沒想到是還多需要一個空白行，而卡在這邊很久。<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<p>以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案。<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>當初看python3的範例上寫<code>print(&ldquo;Content-Type: text/html\n&rdquo;)</code>就自作聰明的以為python3預設是會在字串結束的地方加上換行符號，應該不用再多餘的添加<code>\n</code>，結果沒想到是還多需要一個空白行，而卡在這邊很久。<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
