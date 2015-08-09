@@ -5,7 +5,9 @@ date: 2015-07-22 01:43:10 +0800
 comments: true
 categories: Python
 ---
-Python3可以藉由下方指令，把當前的目錄做為網頁伺服器的根目錄，運行網頁服務：
+Python3[^why_python]可以藉由下方指令，把當前的目錄做為網頁伺服器的根目錄，運行網頁服務：
+
+[^why_python]:本來練習網頁一直都是用python當作簡易伺服器，但是直到需要使用php，才發現python不會自動去運行php的內容，雖然這個問題只要改用php自身的簡易伺服器就可以解決了：<code>php -S 127.0.0.1:8000 -t.</code>。但是，總會不服氣，為何php可以，python沒道理不行。
 
 ``` python
 python3 -m http.server  8000 #開啟網路服務於 Port 8000
