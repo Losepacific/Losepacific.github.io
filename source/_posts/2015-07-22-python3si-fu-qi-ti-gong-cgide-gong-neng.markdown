@@ -18,7 +18,9 @@ python3 -m http.server --cgi 8000
 ```
 <!-- more -->
 
-不過，CGI的檔案不是任何地方都可以放置，基本上Python3的模組，預設需放在當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中[^python3_cgi]， 才會被視為CGI，否則，會被當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容。(以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案)
+不過，CGI的檔案不是任何地方都可以放置，基本上Python3的模組，預設需放在當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中[^python3_cgi]， 才會被視為CGI，否則，會當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容[^detail]。
+
+[^detail]:以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案。
 
 [^python3_cgi]:python3的<code>http.server</code>模組預設<code>http.server.CGIHTTPRequestHandler.cgi_directories=['/cgi-bin', '/htbin']</code>，如果想要改動放cgi程式的資料夾，就得重新設定這個屬性，比如說改成<code>CGI</code>這個目錄：<code>http.server.CGIHTTPRequestHandler.cgi_directories=['/CGI']</code>
 
@@ -64,4 +66,4 @@ echo "</body>";
  
 echo "</html>";
 ?>
-```
+```  
