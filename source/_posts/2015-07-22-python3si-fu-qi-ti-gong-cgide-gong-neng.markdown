@@ -20,6 +20,10 @@ python3 -m http.server --cgi 8000
 
 不過，CGI的檔案不是任何地方都可以放置，基本上Python3的模組，預設需被放在當前目錄下的<code>cgi-bin</code>或<code>htbin</code>這兩個目錄中， 才會被視為CGI，否則，會被當作檔案直接下載，或者，以文字的方式直接顯示檔案裡的程式內容。(以<code>.pl</code>或<code>.py</code>結尾的副檔名 會顯示內容；<code>.php</code>則會直接下載檔案)
 
+檔案目錄的結構示意圖：
+
+<object type="image/svg+xml" data="/images/cgi_dir_struct.svg">Your browser does not support SVG</object>
+
 另外，CGI裡，輸出的前兩行文字必需含有如下內容：
 
 ``` perl
